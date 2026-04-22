@@ -65,6 +65,37 @@ function toggleMobileMenu() {
  * - Setup smooth scroll for anchor links
  * - Initialize scroll effects and animations
  */
+/**
+ * Handle family photo rotation with 4-second interval
+ */
+function initFamilyPhotoRotation() {
+  const familyPhotosContainers = document.querySelectorAll('.family-photos');
+
+  familyPhotosContainers.forEach(container => {
+    const photos = Array.from(container.querySelectorAll('.family-photo-img'));
+
+    if (!photos.length) return;
+
+    let activePhotoIndex = photos.findIndex(photo => photo.classList.contains('is-active'));
+    if (activePhotoIndex === -1) {
+      activePhotoIndex = 0;
+    }
+
+    photos.forEach((photo, index) => {
+      photo.classList.toggle('is-active', index === activePhotoIndex);
+    });
+
+    if (photos.length < 2) return;
+
+    // Rotate family photos every 3 seconds
+    window.setInterval(() => {
+      photos[activePhotoIndex].classList.remove('is-active');
+      activePhotoIndex = (activePhotoIndex + 1) % photos.length;
+      photos[activePhotoIndex].classList.add('is-active');
+    }, 3000);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
   // ─── RESTORE USER'S THEME PREFERENCE ───
@@ -108,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initAchievementSlides();
   initGallerySlides();
   initPublicEngagementSlider();
+  initFamilyPhotoRotation();
 });
 
 // ═══════════════════════════════════════════════════════════
