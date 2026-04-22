@@ -124,7 +124,9 @@ document.addEventListener('DOMContentLoaded', function () {
       event.preventDefault();
       const targetElement = document.querySelector(this.getAttribute('href'));
       if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // ✅ iOS 15.4 se purane iPhones par bhi kaam karta hai
+        const targetPos = targetElement.getBoundingClientRect().top + (window.pageYOffset || window.scrollY);
+        window.scrollTo({ top: targetPos, behavior: 'smooth' });
       }
     });
   });
@@ -288,7 +290,10 @@ function animateCounter(counterElement) {
     this.reset();
   }
 
-  for(let i = 0; i < 90; i++) particles.push(new Particle());
+  // ✅ Mobile par sirf 40 particles, desktop par 90 — Android lag fix
+  const isMobile = window.innerWidth < 768;
+  const particleCount = isMobile ? 40 : 90;
+  for(let i = 0; i < particleCount; i++) particles.push(new Particle());
 
   function draw(){
     ctx.clearRect(0,0,W,H);
@@ -357,30 +362,8 @@ function animateCounter(counterElement) {
   setTimeout(tick, 1200);
 })();
 
-// ---- 4. SMOOTH COUNTER (override / ensure it runs) ----
-(function(){
-  const counters = document.querySelectorAll('.stat-number[data-target]');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(!e.isIntersecting) return;
-      const el = e.target;
-      const target = +el.dataset.target;
-      const suffix = el.dataset.suffix || '';
-      const duration = 1800;
-      const start = performance.now();
-      function step(now){
-        const t = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - t, 3);
-        el.textContent = Math.floor(eased * target) + suffix;
-        if(t < 1) requestAnimationFrame(step);
-        else el.textContent = target + suffix;
-      }
-      requestAnimationFrame(step);
-      obs.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  counters.forEach(c => obs.observe(c));
-})();
+// ---- 4. SMOOTH COUNTER — handled by initCounterAnimations() below ----
+// (duplicate IIFE removed to prevent double animation / memory waste)
 
 // ---- 5. CURSOR GLOW (subtle) ----
 (function(){
@@ -585,36 +568,38 @@ function isInViewport(element) {
 
 (function () {
   let autoScrollActive = false;
-  let autoScrollRAF = null;
-  const SCROLL_SPEED = 0.9; // pixels per frame (~54px/sec at 60fps)
+  let autoScrollInterval = null;
+  const SCROLL_SPEED = 1.5; // pixels per tick (~90px/sec at 60fps)
 
   function autoScrollStep() {
-    if (!autoScrollActive) return;
-    window.scrollBy(0, SCROLL_SPEED);
-    // Stop at bottom of page
-    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 2) {
+    const currentPos = window.pageYOffset || window.scrollY || 0;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    if (currentPos >= maxScroll - 2) {
       stopAutoScroll();
       return;
     }
-    autoScrollRAF = requestAnimationFrame(autoScrollStep);
+    // ✅ window.scrollTo — iPhone aur Android dono par kaam karta hai
+    window.scrollTo(0, currentPos + SCROLL_SPEED);
   }
 
   function startAutoScroll() {
     autoScrollActive = true;
-    autoScrollRAF = requestAnimationFrame(autoScrollStep);
+    // ✅ setInterval use karo rAF ki jagah — iOS par reliable hai
+    autoScrollInterval = setInterval(autoScrollStep, 16); // ~60fps
     const btn = document.getElementById('autoScrollBtn');
     if (btn) { btn.classList.add('active'); btn.textContent = '⏸'; btn.title = 'Stop Auto Scroll'; }
   }
 
   function stopAutoScroll() {
     autoScrollActive = false;
-    if (autoScrollRAF) cancelAnimationFrame(autoScrollRAF);
+    if (autoScrollInterval) clearInterval(autoScrollInterval);
+    autoScrollInterval = null;
     const btn = document.getElementById('autoScrollBtn');
     if (btn) { btn.classList.remove('active'); btn.textContent = '⇓'; btn.title = 'Auto Scroll'; }
   }
 
   // Stop auto scroll on user manual scroll
-  let userScrollTimer = null;
   window.addEventListener('wheel', () => { if (autoScrollActive) stopAutoScroll(); }, { passive: true });
   window.addEventListener('touchmove', () => { if (autoScrollActive) stopAutoScroll(); }, { passive: true });
 
@@ -627,12 +612,18 @@ function isInViewport(element) {
   document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById('autoScrollBtn');
     if (btn) {
+      // ✅ touchend par preventDefault — iPhone par double-fire nahi hoga
+      btn.addEventListener('touchend', function (e) {
+        e.preventDefault();
+        window.toggleAutoScroll();
+      });
       btn.addEventListener('click', window.toggleAutoScroll);
+
       // Show/hide alongside back-to-top button
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) btn.classList.add('visible');
+        if (window.pageYOffset > 500) btn.classList.add('visible');
         else { btn.classList.remove('visible'); if (autoScrollActive) stopAutoScroll(); }
-      });
+      }, { passive: true });
     }
   });
 })();
