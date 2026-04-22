@@ -48,10 +48,6 @@
   --border: rgba(26, 107, 58, 0.2);
 }
 
-/* ═══════════════════════════════════════════════════════════
-   GLOBAL RESET & BASE STYLES
-   ═══════════════════════════════════════════════════════════ */
-
 * { 
   margin: 0; 
   padding: 0; 
@@ -59,7 +55,6 @@
 }
 
 html {
-  /* Prevent accidental horizontal scroll on mobile (Safari often ignores body-only overflow rules). */
   overflow-x: clip;
   width: 100%;
 }
@@ -87,10 +82,6 @@ canvas,
 iframe {
   max-width: 100%;
 }
-
-/* ═══════════════════════════════════════════════════════════
-   NAVIGATION
-   ═══════════════════════════════════════════════════════════ */
 
 nav {
   position: fixed;
@@ -150,10 +141,6 @@ nav {
   border-color: var(--green-light);
   color: var(--green-light);
 }
-
-/* ═══════════════════════════════════════════════════════════
-   HERO SECTION - CLEAN PROFESSIONAL LAYOUT
-   ═══════════════════════════════════════════════════════════ */
 
 .hero {
   min-height: 81vh;
@@ -305,7 +292,6 @@ nav {
   box-shadow: 0 8px 20px rgba(157, 127, 31, 0.2);
 }
 
-/* Hero Image */
 .hero-image-container {
   position: relative;
   width: 100%;
@@ -323,13 +309,14 @@ nav {
 
 .image-frame img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  transition: transform 0.3s;
+  transition: transform 0.4s ease;
 }
 
 .image-frame:hover img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .image-badge {
@@ -366,10 +353,6 @@ nav {
   font-size: 0.82rem;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   REUSABLE SECTION COMPONENTS
-   ═══════════════════════════════════════════════════════════ */
-
 .section-tag {
   display: inline-block;
   color: var(--green-light);
@@ -397,10 +380,6 @@ nav {
 .gold {
   color: var(--gold);
 }
-
-/* ═══════════════════════════════════════════════════════════
-   ABOUT SECTION
-   ═══════════════════════════════════════════════════════════ */
 
 .about-section {
   padding: 60px 5% 10px;
@@ -464,10 +443,6 @@ nav {
   line-height: 1.6;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   ACHIEVEMENTS SECTION
-   ═══════════════════════════════════════════════════════════ */
-
 .achievements-section {
   padding: 100px 5%;
   background: var(--surface);
@@ -530,7 +505,7 @@ nav {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.45s ease, opacity 0.65s ease;
+  transition: transform 0.4s ease, opacity 0.65s ease;
 }
 
 .achievement-media.has-slides img {
@@ -538,7 +513,7 @@ nav {
   inset: 0;
   opacity: 0;
   transform: scale(1.02);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transition: opacity 0.65s ease, transform 0.4s ease;
 }
 
 .achievement-media.has-slides img.is-active {
@@ -546,8 +521,7 @@ nav {
   transform: scale(1);
 }
 
-.achievement-card:hover .achievement-media img,
-.achievement-media:hover img {
+.achievement-card:hover .achievement-media img {
   transform: scale(1.06);
 }
 
@@ -625,10 +599,6 @@ nav {
   line-height: 1.7;
   font-size: 0.95rem;
 }
-
-/* ═══════════════════════════════════════════════════════════
-   INITIATIVES SECTION
-   ═══════════════════════════════════════════════════════════ */
 
 .initiatives-section {
   padding: 100px 5%;
@@ -728,10 +698,6 @@ nav {
   letter-spacing: 1px;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   GALLERY SECTION
-   ═══════════════════════════════════════════════════════════ */
-
 .gallery-section {
   padding: 100px 5% 20px;
   background: var(--surface);
@@ -789,7 +755,7 @@ nav {
 }
 
 .feature-image-container:hover > img {
-  transform: scale(1.03);
+  transform: scale(1.06);
 }
 
 .image-overlay {
@@ -872,10 +838,6 @@ nav {
   line-height: 1.8;
   font-size: 0.97rem;
 }
-
-/* ═══════════════════════════════════════════════════════════
-   ENGAGEMENT CARDS GRID (NEW)
-   ═══════════════════════════════════════════════════════════ */
 
 .engagement-grid-1 {
   display: grid;
@@ -1008,10 +970,6 @@ nav {
   background: rgba(212, 175, 55, 0.08);
 }
 
-/* ═══════════════════════════════════════════════════════════
-   CONTACT SECTION
-   ═══════════════════════════════════════════════════════════ */
-
 .contact-section {
   padding: 40px 5% 100px;
 }
@@ -1113,7 +1071,6 @@ nav {
   line-height: 1.5;
 }
 
-/* ===================== CONTACT FORM ===================== */
 #contact {
   width: 100%;
   padding: 90px 5% 70px;
@@ -1399,7 +1356,6 @@ nav {
   }
 }
 
-  /* Success Section Styling - Exact website match */
   #contact-success {
     display: none;
     padding: 3rem 2.5rem;
@@ -1459,16 +1415,10 @@ nav {
     100% { transform: scale(1); }
   }
 
-  /* Form loading state */
   #sendBtn:disabled {
     opacity: 0.7;
     cursor: not-allowed;
   }
-
-
-/* ═══════════════════════════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════════════════════════ */
 
 footer {
   background: var(--surface);
@@ -1489,10 +1439,6 @@ footer p {
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
-
-/* ═══════════════════════════════════════════════════════════
-   RESPONSIVE DESIGN
-   ═══════════════════════════════════════════════════════════ */
 
 @media (min-width: 1025px) {
   .hero-image-container {
@@ -1618,10 +1564,6 @@ footer p {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   SCROLL PROGRESS BAR
-   ═══════════════════════════════════════════════════════════ */
-
 .scroll-progress {
   position: fixed; 
   top: 0;
@@ -1633,10 +1575,6 @@ footer p {
   transition: width 0.1s linear;
   box-shadow: 0 0 18px rgba(212, 175, 55, 0.7);
 }
-
-/* ═══════════════════════════════════════════════════════════
-   NAV RIGHT + HAMBURGER MENU
-   ═══════════════════════════════════════════════════════════ */
 
 .nav-right {
   display: flex;
@@ -1738,10 +1676,6 @@ footer p {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   VISION & QUOTE SECTION (NEW)
-   ═══════════════════════════════════════════════════════════ */
-
 .vision-section {
   padding: 20px 5% 100px;
   background: var(--bg);
@@ -1770,7 +1704,6 @@ footer p {
   align-items: center;
 }
 
-/* Quote block */
 .vision-quote-wrap {
   position: relative;
   padding: 3rem;
@@ -1829,7 +1762,6 @@ footer p {
   font-weight: 400 !important;
 }
 
-/* Pillars */
 .vision-pillars {
   display: flex;
   flex-direction: column;
@@ -1910,9 +1842,6 @@ footer p {
     font-size: 1.1rem;
   }
 }
-/* ═══════════════════════════════════════════════════════════
-   PUBLIC ENGAGEMENT SECTION - COMMUNITY CONNECTION
-   ═══════════════════════════════════════════════════════════ */
 
 .public-engagement-section {
   background: var(--bg);
@@ -1975,30 +1904,21 @@ footer p {
   border-radius: 12px;
 }
 
-
 .public-image-wrapper img {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 5/3;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.2);
   border: 2px solid var(--gold);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
-  min-height: 280px;
+  min-height: 0;
 }
-
-
 
 .public-image-wrapper img:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
   box-shadow: 0 12px 32px rgba(212,175,55,0.3);
 }
-
-
-
-/* ═══════════════════════════════════════════════════════════
-   ACHIEVEMENTS GRID — CENTER LAST ROW
-   ═══════════════════════════════════════════════════════════ */
 
 .achievements-grid {
   grid-template-columns: repeat(6, 1fr) !important;
@@ -2008,12 +1928,10 @@ footer p {
   grid-column: span 2;
 }
 
-/* If 1 card is left in the last row, center it */
 .achievements-grid > .achievement-card:last-child:nth-child(3n+1) {
   grid-column: 3 / span 2;
 }
 
-/* If 2 cards are left in the last row, center them as a pair */
 .achievements-grid > .achievement-card:nth-last-child(2):nth-child(3n+1) {
   grid-column: 2 / span 2;
 }
@@ -2035,10 +1953,6 @@ footer p {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   INITIATIVES GRID — 3 COLS
-   ═══════════════════════════════════════════════════════════ */
-
 .initiatives-grid {
   grid-template-columns: repeat(3, 1fr) !important;
 }
@@ -2054,10 +1968,6 @@ footer p {
     grid-template-columns: 1fr !important;
   }
 }
-
-/* ═══════════════════════════════════════════════════════════
-   BACK TO TOP BUTTON
-   ═══════════════════════════════════════════════════════════ */
 
 .back-to-top {
   position: fixed;
@@ -2094,10 +2004,6 @@ footer p {
   box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
   opacity: 1;
 }
-
-/* ═══════════════════════════════════════════════════════════
-   IMPROVED FOOTER
-   ═══════════════════════════════════════════════════════════ */
 
 footer {
   background: var(--surface);
@@ -2187,10 +2093,6 @@ footer {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   LIGHT THEME NAV FIX
-   ═══════════════════════════════════════════════════════════ */
-
 [data-theme="light"] nav {
   background: rgba(245, 248, 247, 0.95);
   border-bottom-color: rgba(26, 107, 58, 0.25);
@@ -2200,7 +2102,6 @@ footer {
   background: rgba(245, 248, 247, 0.98);
 }
 
-/* Light Mode Effect Adjustments */
 [data-theme="light"] .stat-card::after {
   background: radial-gradient(circle at 50% 120%, rgba(157, 127, 31, 0.12), transparent 70%);
 }
@@ -2301,12 +2202,10 @@ footer {
   background: linear-gradient(to bottom, rgba(157, 127, 31, 0.6), rgba(157, 127, 31, 0.2));
 }
 
-/* Fix early life section - always dark background fix */
 [data-theme="light"] #early-life {
   background: var(--bg-secondary, #e6f0ea) !important;
 }
 
-/* Fix text-primary variable not defined → falls back to white (#fff) in light mode */
 [data-theme="light"] .elt-item h4,
 [data-theme="light"] .early-life-section h3 {
   color: var(--text) !important;
@@ -2316,9 +2215,6 @@ footer {
   color: var(--text-secondary) !important;
 }
 
-/* Fix back-to-top button invisible in light mode */
-
-/* Light mode - improved card text contrast */
 [data-theme="light"] .highlight-card h4,
 [data-theme="light"] .achievement-card h3,
 [data-theme="light"] .initiative-card h3,
@@ -2343,30 +2239,25 @@ footer {
   color: #3a5f4a;
 }
 
-/* Light mode section text contrast */
 [data-theme="light"] .about-text p,
 [data-theme="light"] .hero-bio {
   color: #3a5f4a;
 }
 
-/* Light mode engagement tag better contrast */
 [data-theme="light"] .eng-tag {
   background: rgba(13, 90, 43, 0.12);
   color: #0d5a2b;
 }
 
-/* Light mode initiative-category badge */
 [data-theme="light"] .initiative-category {
   background: rgba(13, 90, 43, 0.08);
   color: #3a5f4a;
 }
 
-/* Light mode vision quote text */
 [data-theme="light"] .vision-quote {
   color: #6b4f10;
 }
 
-/* Light mode footer links */
 [data-theme="light"] .footer-links-col ul a {
   color: #3a5f4a;
 }
@@ -2380,12 +2271,10 @@ footer {
   color: #3a5f4a;
 }
 
-/* Light mode contact text */
 [data-theme="light"] .contact-details p {
   color: #3a5f4a;
 }
 
-/* Light mode hero tagline contrast */
 [data-theme="light"] .hero-tagline {
   color: #3a5f4a;
 }
@@ -2499,7 +2388,6 @@ footer {
   opacity: 0.35;
 }
 
-/* ---- Scroll Reveal ---- */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -2525,7 +2413,6 @@ footer {
 }
 .reveal-right.revealed { opacity: 1; transform: translateX(0); }
 
-/* Stagger children */
 .reveal-stagger > * {
   opacity: 0;
   transform: translateY(35px);
@@ -2540,7 +2427,6 @@ footer {
 .reveal-stagger.revealed > *:nth-child(6) { opacity:1; transform:none; transition-delay:.5s; }
 .reveal-stagger.revealed > *:nth-child(7) { opacity:1; transform:none; transition-delay:.6s; }
 
-/* ---- Typewriter Hero Subtitle ---- */
 .typewriter-wrap {
   display: inline-block;
   min-height: 1.5em;
@@ -2556,7 +2442,6 @@ footer {
   50%       { border-color: gold; }
 }
 
-/* ---- Glowing stat cards ---- */
 .stat-card {
   position: relative;
   overflow: hidden;
@@ -2571,7 +2456,6 @@ footer {
 }
 .stat-card:hover::after { opacity: 1; }
 
-/* ---- Timeline for Achievements ---- */
 .achievements-grid {
   position: relative;
 }
@@ -2603,7 +2487,6 @@ footer {
   box-shadow: 0 20px 60px rgba(212,175,55,0.18);
 }
 
-/* ---- Gold shimmer on section titles ---- */
 @keyframes shimmer {
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
@@ -2617,7 +2500,6 @@ footer {
   animation: shimmer 4s linear infinite;
 }
 
-/* ---- Floating hero media ---- */
 .image-frame,
 .image-badge {
   animation: heroMediaFloat 5.5s ease-in-out infinite;
@@ -2627,19 +2509,6 @@ footer {
   50%       { transform: translateY(-10px); }
 }
 
-/* ---- Hero image subtle zoom ---- */
-.image-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s;
-}
-.image-frame:hover img {
-  transform: scale(1.05);
-}
-
-/* ---- Pillar cards hover ---- */
 .pillar-card {
   transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
               box-shadow 0.35s, border-color 0.35s;
@@ -2650,7 +2519,6 @@ footer {
   border-color: rgba(212,175,55,0.5);
 }
 
-/* ---- Initiative cards shine effect ---- */
 .initiative-card {
   position: relative;
   overflow: hidden;
@@ -2669,7 +2537,6 @@ footer {
 }
 .initiative-card:hover::before { left: 150%; }
 
-/* ---- Social button hover ripple ---- */
 .social-btn {
   position: relative;
   overflow: hidden;
@@ -2680,7 +2547,6 @@ footer {
   box-shadow: 0 8px 24px rgba(212,175,55,0.25);
 }
 
-/* ---- Early Life section ---- */
 .early-life-section {
   padding: 1rem 2rem 0;
   max-width: 1200px;
@@ -2747,7 +2613,6 @@ footer {
 }
 @media(max-width:768px){ .early-life-grid { grid-template-columns: 1fr; } }
 
-/* ---- Engagement card hover ---- */
 .engagement-card {
   transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s;
 }
@@ -2756,7 +2621,6 @@ footer {
   box-shadow: 0 14px 45px rgba(212,175,55,0.15);
 }
 
-/* ---- Smooth nav link underline ---- */
 nav ul li a {
   position: relative;
 }
@@ -2770,7 +2634,6 @@ nav ul li a::after {
 }
 nav ul li a:hover::after { width: 100%; }
 
-/* ---- Hero content entrance ---- */
 @keyframes heroFadeUp {
   from { opacity:0; transform: translateY(30px); }
   to   { opacity:1; transform: translateY(0); }
@@ -2783,10 +2646,6 @@ nav ul li a:hover::after { width: 100%; }
 .hero-stats    { animation: heroFadeUp .9s ease both; animation-delay:.75s; }
 .hero-cta      { animation: heroFadeUp .7s ease both; animation-delay:.9s; }
 .hero-image-container { animation: heroFadeUp .7s ease both; animation-delay:.5s; }
-
-/* ═══════════════════════════════════════════════════════════
-   GALLERY FEATURE IMAGE ROTATION
-   ═══════════════════════════════════════════════════════════ */
 
 .feature-image-slides {
   position: relative;
@@ -2804,7 +2663,7 @@ nav ul li a:hover::after { width: 100%; }
   object-fit: cover;
   opacity: 0;
   transform: scale(1.02);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transition: opacity 0.65s ease, transform 0.4s ease;
 }
 
 .feature-image-slides img.is-active {
@@ -2821,7 +2680,10 @@ nav ul li a:hover::after { width: 100%; }
   transform: scale(1);
 }
 
-
+.feature-image-slides img:only-child {
+  opacity: 1;
+  transform: scale(1);
+}
 
 @keyframes fadeInUp {
   from {
@@ -2834,13 +2696,11 @@ nav ul li a:hover::after { width: 100%; }
   }
 }
 
-/* Responsive adjustments for public engagement */
-
 @media (max-width: 768px) {
   
   .public-image-wrapper img {
-    aspect-ratio: 2/3 !important;
-    min-height: 350px;
+    aspect-ratio: 5/3 !important;
+    min-height: 0;
   }
   
   .engagement-quote-wrap blockquote {
@@ -2851,18 +2711,14 @@ nav ul li a:hover::after { width: 100%; }
 @media (max-width: 600px) {
 
   .public-image-wrapper img {
-    aspect-ratio: 2/3 !important;
-    min-height: 400px;
+    aspect-ratio: 5/3 !important;
+    min-height: 0;
   }
   
   .engagement-quote-wrap blockquote {
     font-size: 1rem;
   }
 }
-
-/* ═══════════════════════════════════════════════════════════
-   IMAGE OVERLAY BADGES — RESPONSIVE
-   ═══════════════════════════════════════════════════════════ */
 
 @media (max-width: 1024px) {
   .image-overlay {
@@ -2888,35 +2744,104 @@ nav ul li a:hover::after { width: 100%; }
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   FAMILY PHOTO — MOBILE ASPECT RATIO
-   ═══════════════════════════════════════════════════════════ */
+.family-section {
+  background: var(--surface);
+  padding: 70px 5% 40px;
+}
+
+.family-divider {
+  margin-left: 0;
+}
+
+.family-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 2.5rem;
+}
+
+.family-photos {
+  flex: 0 1 min(100%, 360px);
+  width: min(100%, 360px);
+  max-width: 360px;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  border-radius: 16px;
+}
+
+.family-photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+  border: 2px solid var(--gold);
+  background: #eee;
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 0.65s ease, transform 0.4s ease;
+}
+
+.family-photo-img.is-active {
+  opacity: 1;
+}
+
+.family-photos:hover .family-photo-img.is-active {
+  transform: scale(1.06);
+}
+
+.family-bio {
+  flex: 1 1 320px;
+  min-width: 260px;
+}
+
+.family-bio-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.family-bio p,
+.family-bio-text {
+  color: var(--text-secondary);
+  font-size: 1.05rem !important;
+  line-height: 1.8;
+}
+
+@media (max-width: 1024px) {
+  .family-photos {
+    flex-basis: 100%;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 5/3;
+  }
+}
 
 @media (max-width: 768px) {
-  .family-photo {
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
-  }
-  .family-photo img {
-    aspect-ratio: 3/2 !important;
-    max-height: 280px;
+  .family-photos {
+    flex-basis: 100%;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 5/3;
   }
 
-    .family-photo {
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
+  .family-bio p,
+  .family-bio-text {
+    font-size: 1rem !important;
   }
 
   .public-image-wrapper img {
-    aspect-ratio: 3/2 !important;
-    min-height: 280px;
+    aspect-ratio: 5/3 !important;
+    min-height: 0;
   }
 
 }
-
-/* ═══════════════════════════════════════════════════════════
-   FOOTER QUICK LINKS — BETTER MOBILE LAYOUT
-   ═══════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
   .footer-top {
@@ -2939,10 +2864,6 @@ nav ul li a:hover::after { width: 100%; }
     grid-column: auto;
   }
 }
-
-/* ═══════════════════════════════════════════════════════════
-   AUTO-SCROLL BUTTON
-   ═══════════════════════════════════════════════════════════ */
 
 .auto-scroll-btn {
   position: fixed;
@@ -3001,10 +2922,6 @@ nav ul li a:hover::after { width: 100%; }
   color: #fff;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   FOOTER DESIGNER CREDIT
-   ═══════════════════════════════════════════════════════════ */
-
 .footer-designer {
   font-size: 1rem;
   color: var(--text-secondary);
@@ -3017,21 +2934,20 @@ nav ul li a:hover::after { width: 100%; }
 }
 
 @media(max-width: 480px) {
-  /* Fix achievement media overflow on mobile */
   .achievement-media {
     width: 100% !important;
-    margin: 0 !important;
+    margin: 0 0 1.4rem 0 !important;
   }
 
   .event-caption {
     padding: 1rem !important;
   }
 
-  /* Fix for mobile left padding alignment */
   .hero,
   .about-section,
   .achievements-section,
   .initiatives-section,
+  .family-section,
   .gallery-section,
   .contact-section,
   .vision-section,
@@ -3047,7 +2963,6 @@ nav ul li a:hover::after { width: 100%; }
     padding-right: 1rem !important;
   }
 
-  /* Override inline padding on public-images-grid */
   .public-images-grid {
     padding: 0 1rem !important;
   }
@@ -3115,8 +3030,52 @@ nav ul li a:hover::after { width: 100%; }
   border-radius: 8px;
 }
 
-img:hover {
-  transform: scale(1.03);
-  transition: transform 0.3s ease;
-  border-radius: 10px;
+/* ═══════════════════════════════════════════════════════════
+   UNIFIED HOVER ZOOM — same as family section
+   scale(1.06) · transition 0.4s ease · overflow hidden
+   ═══════════════════════════════════════════════════════════ */
+
+.feature-image-container,
+.achievement-media,
+.public-image-wrapper,
+.image-frame {
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TABLET + MOBILE — aspect-ratio 5/3 for all picture areas
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .feature-image-container {
+    aspect-ratio: 5/3 !important;
+  }
+
+  .achievement-media {
+    aspect-ratio: 5/3 !important;
+    width: 100% !important;
+    margin: 0 0 1.4rem 0 !important;
+  }
+
+  .public-image-wrapper img {
+    aspect-ratio: 5/3 !important;
+    min-height: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .feature-image-container {
+    aspect-ratio: 5/3 !important;
+  }
+
+  .achievement-media {
+    aspect-ratio: 5/3 !important;
+    width: 100% !important;
+    margin: 0 0 1.4rem 0 !important;
+  }
+
+  .public-image-wrapper img {
+    aspect-ratio: 5/3 !important;
+    min-height: 0 !important;
+  }
 }
